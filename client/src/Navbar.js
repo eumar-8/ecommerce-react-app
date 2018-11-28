@@ -16,7 +16,7 @@ export default class Navbar extends React.Component {
             <NavLink to="/shops">Shops</NavLink>
           </li>
           <li style={styles.right}>
-            <NavLink to="/bascket">
+            <NavLink to="/basket">
               <i className="fa fa-shopping-basket" />
             </NavLink>
           </li>

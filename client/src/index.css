@@ -20,11 +20,53 @@ code {
   background-image: url("https://res.cloudinary.com/eumar-8/image/upload/v1543417200/basket_abwt7w.jpg");
   color: white;
   text-align: center;
-  height: 400px;
+  height: 600px;
   background-size: cover !important;
   display: flex;
-  align-items: center;
+
   justify-content: center;
   background-position: center;
   background-position-y: top;
+}
+.banner h1 {
+  margin-top: 80px;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#custom-search-input {
+  padding: 3px;
+  border: solid 1px #e4e4e4;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+#custom-search-input input {
+  border: 0;
+  box-shadow: none;
+}
+
+#custom-search-input button {
+  margin: 2px 0 0 0;
+  background: none;
+  box-shadow: none;
+  border: 0;
+  color: #666666;
+  padding: 0 8px 0 10px;
+  border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover {
+  border: 0;
+  box-shadow: none;
+  border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search {
+  font-size: 23px;
 }
