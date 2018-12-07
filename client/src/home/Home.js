@@ -1,14 +1,22 @@
 import React from "react";
 import Search from "./Search";
+import CardsHome from "./CardsHome";
 
 export default class Home extends React.Component {
   render() {
     return (
-      <div className="banner">
-        <h1>WELCOME TO DECOHOME </h1>
-        <div>
-          <Search />
-        </div>
+      <div>
+        <section>
+          <div className="banner">
+            <div className="banner-content">
+              <h1>Welcome to DecoHome</h1>
+              <Search />
+            </div>
+          </div>
+        </section>
+        <section>
+          <CardsHome />
+        </section>
       </div>
     );
   }

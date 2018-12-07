@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default class Navbar extends React.Component {
   render() {
+    let { num } = this.props;
     return (
       <div className="nav_bar">
         <ul style={styles.navbar}>
@@ -16,8 +17,8 @@ export default class Navbar extends React.Component {
             <NavLink to="/shops">Shops</NavLink>
           </li>
           <li style={styles.right}>
-            <NavLink to="/basket">
-              <i className="fa fa-shopping-basket" />
+            <NavLink to="/cart">
+              <i className="fa fa-shopping-basket" />({num})
             </NavLink>
           </li>
         </ul>
@@ -29,7 +30,7 @@ export default class Navbar extends React.Component {
 const styles = {
   navbar: {
     display: "grid",
-    gridTemplateColumns: "4fr 1fr 1fr 1fr",
+    gridTemplateColumns: "12fr 1fr 1fr 1fr ",
     gridGap: "1%",
     textAlign: "center",
     backgroundImage: "linear-gradient(rgb(97, 121, 148), rgb(56, 75, 93))",

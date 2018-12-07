@@ -1,23 +1,43 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import Home from "./home/Home";
-import Products from "./products/Products";
 import Shops from "./shops/Shops";
-import Basket from "./basket/Basket";
+import Products from "./products/Products";
+import Cart from "./basket/Cart";
+import Card from "./products/Card";
+import Footer from "./Footer";
+import Login from "./Admin/Login";
+import AddProduct from "./Admin/AddProduct";
+import UploadImages from "./Admin/UploadImages";
+
+import CheckOut from "./basket/CheckOut";
 
 class App extends Component {
+  state = {
+    num: 0
+  };
+  handleNumelementscart() {
+    let total = (this.state.num = +1);
+    this.setState({ num: total });
+  }
   render() {
     return (
       <div>
         <Router>
           <div>
-            <Navbar />
+            <Navbar num={this.state.num} />
             <Route exact path="/" component={Home} />
-            <Route path="/products" component={Products} />
+            <Route exact path="/products" component={Products} />
             <Route path="/shops" component={Shops} />
-            <Route path="/basket" component={Basket} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/products/:product" component={Card} />
+            <Route path="/checkOut" component={CheckOut} />
+            <Route path="/admin/login" component={Login} />
+            <Route path="/admin/update" component={AddProduct} />
+            <Route path="/admin/product/:product_id" component={UploadImages} />
+            <Footer />
           </div>
         </Router>
       </div>
