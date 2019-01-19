@@ -1,9 +1,9 @@
 import React from "react";
 import Sidebar from "../Sidebar";
 //import DataBase from "../DataBase";
-import Cards from "../products/cards";
+import ProductsMain from "./ProductsMain";
 import { NavLink } from "react-router-dom";
-export default class Products extends React.Component {
+export default class ProductsPage extends React.Component {
   state = {
     product: "",
     products: []
@@ -50,7 +50,7 @@ export default class Products extends React.Component {
             <NavLink to="/admin/update">
               <button>add product</button>
             </NavLink>
-            <Cards products={this.state.products} />
+            <ProductsMain products={this.state.products} />
           </div>
         </div>
       </div>

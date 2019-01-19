@@ -6,7 +6,7 @@ export default class Carts extends React.Component {
     price: 0
   };
   componentDidMount() {
-    let { product, handleTotalToPay } = this.props;
+    let { product } = this.props;
     this.findImages(product._id);
     this.handlePrice(product.price, product.qty);
   }

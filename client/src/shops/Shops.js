@@ -13,14 +13,14 @@ export default class Shops extends React.Component {
             height: "400px",
             frameborder: "0"
           }}
-          allowfullscreen
+          allowFullScreen
         />
-        <di>
+        <div>
           <h2 style={styles.textShops} className="container">
             We are around Espain Eso sit voluptatem accusantium doloremque
             laudantium.
           </h2>
-        </di>
+        </div>
       </div>
     );
   }

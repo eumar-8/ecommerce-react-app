@@ -10,16 +10,12 @@ export default class Cart extends React.Component {
 
   handleTotalToPay = amount => {
     let total = (this.state.totalToPay += amount);
-    this.setState({ totalToPay: total }, () => {
-      console.log("============", this.state.totalToPay);
-    });
+    this.setState({ totalToPay: total });
   };
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
 
-    this.setState({ products: cart }, () => {
-      //console.log("-------------->", cart);
-    });
+    this.setState({ products: cart });
   }
 
   render() {

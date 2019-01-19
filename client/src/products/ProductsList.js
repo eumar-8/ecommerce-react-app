@@ -5,7 +5,7 @@ import CarruselCard from "./CarruselCard";
 import InputQuantity from "./InputQuantity";
 import CartStorage from "../basket/CartStorage";
 
-export default class Card extends React.Component {
+export default class ProductsList extends React.Component {
   state = { product: {}, images: [], quantity: "" };
 
   componentDidMount() {
@@ -18,7 +18,6 @@ export default class Card extends React.Component {
     fetch(`http://localhost:3001/images/${id}`).then(response => {
       if (response.ok) {
         response.json().then(responseJson => {
-          //;
           if (responseJson.length > 0) {
             //console.log(responseJson);
             this.setState({ images: responseJson }, () => {
@@ -49,6 +48,8 @@ export default class Card extends React.Component {
 
   render() {
     let { product } = this.state;
+    let { handleClickCart, numCart } = this.props;
+
     return (
       <div style={styles.gridCardProduct}>
         <div style={styles.ul}>
@@ -68,8 +69,9 @@ export default class Card extends React.Component {
           />
 
           <button
-            onClick={() => {
-              CartStorage(this.state.product, this.state.quantity);
+            onClick={e => {
+              handleClickCart(e);
+              CartStorage(this.state.product, this.state.quantity, numCart);
             }}
             style={styles.button}
             type="button"

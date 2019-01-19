@@ -1,9 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+//import { NumCart } from "./NumCart";
 
 export default class Navbar extends React.Component {
+  componentDidMount() {
+    // console.log("i am num cart", NumCart);
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    if (cart) {
+      //console.log("navbar========", cart[cart.length - 1].count);
+      //this.setState({ num: cart.length });
+    }
+  }
+
   render() {
-    let { num } = this.props;
+    let { numCart } = this.props;
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    let num = !cart ? numCart : cart[cart.length - 1].count;
     return (
       <div className="nav_bar">
         <ul style={styles.navbar}>

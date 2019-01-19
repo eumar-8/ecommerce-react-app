@@ -1,13 +1,13 @@
 import React from "react";
 //import { NavLink } from "react-router-dom";
-import ItemCards from "./ItemCards";
-export default class Cards extends React.Component {
+import ProductItem from "./ProductItem";
+export default class ProductsMain extends React.Component {
   render() {
     let { products } = this.props;
     return (
       <div style={styles.gridCards}>
         {products.map((el, i) => {
-          return <ItemCards product={el} key={i} />;
+          return <ProductItem product={el} key={i} />;
         })}
       </div>
     );

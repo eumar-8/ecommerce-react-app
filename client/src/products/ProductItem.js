@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-export default class Cards extends React.Component {
+export default class ProductItem extends React.Component {
   state = {
     image: ""
   };
@@ -24,9 +24,10 @@ export default class Cards extends React.Component {
   }
   componentWillReceiveProps(nextProp) {
     if (this.props.product._id !== nextProp.product._id) {
+      debugger;
       this.findImages(nextProp.product._id);
     }
-  }
+  } 
   render() {
     let { product } = this.props;
 
