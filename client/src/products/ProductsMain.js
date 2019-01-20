@@ -1,15 +1,20 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
 //import { NavLink } from "react-router-dom";
 import ProductItem from "./ProductItem";
 export default class ProductsMain extends React.Component {
   render() {
     let { products } = this.props;
     return (
-      <div style={styles.gridCards}>
+      <Row>
         {products.map((el, i) => {
-          return <ProductItem product={el} key={i} />;
+          return (
+            <Col xs="4">
+              <ProductItem product={el} key={i} />
+            </Col>
+          );
         })}
-      </div>
+      </Row>
     );
   }
 }

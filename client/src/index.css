@@ -20,6 +20,12 @@ code {
   top: 0;
   z-index: 1000;
 }
+.fa-shopping-basket {
+  font-size: 14px;
+}
+.numCart {
+  font-size: 15px;
+}
 
 .banner {
   /* background: linear-gradient(rgba(233, 158, 126, 0), rgba(255, 255, 255, 0.37)), */

@@ -1,8 +1,10 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
 import Sidebar from "../Sidebar";
 //import DataBase from "../DataBase";
 import ProductsMain from "./ProductsMain";
 import { NavLink } from "react-router-dom";
+
 export default class ProductsPage extends React.Component {
   state = {
     product: "",
@@ -37,23 +39,26 @@ export default class ProductsPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <div style={styles.gridCardProduct}>
-          <div className="sidebar ">
-            <Sidebar
-              getProducts={this.getProducts}
-              getProductsBycategoty={this.getProductsBycategoty}
-            />
-          </div>
-
-          <div className="container-cards">
+      <Container>
+        <Row>
+          <Col xs="2">
+            <div className="sidebar ">
+              <Sidebar
+                getProducts={this.getProducts}
+                getProductsBycategoty={this.getProductsBycategoty}
+              />
+            </div>
+          </Col>
+          <Col xs="10">
             <NavLink to="/admin/update">
               <button>add product</button>
             </NavLink>
-            <ProductsMain products={this.state.products} />
-          </div>
-        </div>
-      </div>
+            <Container>
+              <ProductsMain products={this.state.products} />
+            </Container>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

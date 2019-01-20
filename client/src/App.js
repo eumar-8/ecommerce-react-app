@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from "./Navbar";
+import GenericNavbar from "./Navbar";
 import Home from "./home/Home";
 import Shops from "./shops/Shops";
 import Cart from "./basket/Cart";
@@ -27,7 +27,7 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Navbar numCart={this.state.num} />
+            <GenericNavbar numCart={this.state.num} />
             <Route exact path="/" component={Home} />
             <Route exact path="/products" component={ProductsPage} />
             <Route path="/shops" component={Shops} />

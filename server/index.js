@@ -10,7 +10,8 @@ app.use(bodyParser.json());
 // connnect to mongo
 mongoose.connect(
   "mongodb://127.0.0.1/ecomercedb",
-  () => {
+  err => {
+    console.log(err);
     console.log("connected to mongodb");
   }
 );

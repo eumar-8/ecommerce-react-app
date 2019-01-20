@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
 import { NavLink } from "react-router-dom";
 export default class ProductItem extends React.Component {
   state = {
@@ -27,7 +28,7 @@ export default class ProductItem extends React.Component {
       debugger;
       this.findImages(nextProp.product._id);
     }
-  } 
+  }
   render() {
     let { product } = this.props;
 
@@ -42,8 +43,8 @@ export default class ProductItem extends React.Component {
               src={this.state.image}
               alt=""
             />
-            <div className="card-body">
-              <p style={styles.textName} className="card-text">
+            <div className="card-body text-center">
+              <p style={styles.textName} className="text-center card-text">
                 {product.name}
               </p>
               <p className="card-text">{product.price}€</p>
@@ -57,15 +58,16 @@ export default class ProductItem extends React.Component {
 
 let styles = {
   image: {
-    width: "300px",
+    width: "200px",
     height: " 200px",
-    margin: " 20px"
+    margin: "auto",
+    paddingTop: "20px"
   },
   textName: {
-    whiteSpace: "nowrap",
-    width: "250px",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    fontWeight: "500"
+    //whiteSpace: "nowrap",
+    //width: "250px",
+    //overflow: "hidden",
+    fontWeight: "500",
+    color: "black"
   }
 };

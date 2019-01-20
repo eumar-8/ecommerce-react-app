@@ -1,0 +1,4 @@
+- init db: `/usr/local/opt/mongodb/bin/mongod --config /usr/local/etc/mongod.conf`
+- init server: `nodemon`
+- init client: `npm start`
+- access mongo: `mongo`
