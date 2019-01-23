@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import Sidebar from "../Sidebar";
-//import DataBase from "../DataBase";
+import Media from "react-media";
 import ProductsMain from "./ProductsMain";
-import { NavLink } from "react-router-dom";
+import Sidebar from "../Sidebar";
+import TopBar from "../TopBar";
 
 export default class ProductsPage extends React.Component {
   state = {
@@ -14,6 +14,24 @@ export default class ProductsPage extends React.Component {
   componentDidMount() {
     this.getProducts();
   }
+
+  removeCard = id => {
+    console.log(id);
+    const url = "http://localhost:3001/products/remove";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        _id: id
+      })
+    })
+      .then(res => {
+        this.getProducts();
+      })
+      .catch(e => {});
+  };
 
   getProducts = () => {
     const url = "http://localhost:3001/products";
@@ -39,35 +57,56 @@ export default class ProductsPage extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <Col xs="2">
-            <div className="sidebar ">
-              <Sidebar
-                getProducts={this.getProducts}
-                getProductsBycategoty={this.getProductsBycategoty}
-              />
-            </div>
-          </Col>
-          <Col xs="10">
-            <NavLink to="/admin/update">
-              <button>add product</button>
-            </NavLink>
-            <Container>
-              <ProductsMain products={this.state.products} />
-            </Container>
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        <Media query="(min-width: 900px)">
+          {matches =>
+            matches ? (
+              <Container fluid={true} style={styles.container}>
+                <Row>
+                  <Col xs="2">
+                    <div className="sidebar ">
+                      <Sidebar
+                        getProducts={this.getProducts}
+                        getProductsBycategoty={this.getProductsBycategoty}
+                      />
+                    </div>
+                  </Col>
+                  <Col xs="10">
+                    {/* <Container> */}
+                    <ProductsMain
+                      removeCard={this.removeCard}
+                      products={this.state.products}
+                    />
+                    {/* </Container> */}
+                  </Col>
+                </Row>
+              </Container>
+            ) : (
+              <Container>
+                <TopBar
+                  getProducts={this.getProducts}
+                  getProductsBycategoty={this.getProductsBycategoty}
+                />
+                <Row>
+                  <Col xs="12">
+                    {/* <Container> */}
+                    <ProductsMain
+                      removeCard={this.removeCard}
+                      products={this.state.products}
+                    />
+                    {/* </Container> */}
+                  </Col>
+                </Row>
+              </Container>
+            )
+          }
+        </Media>
+      </div>
     );
   }
 }
 const styles = {
-  gridCardProduct: {
-    display: "grid",
-    gridTemplateColumns: "1fr 4fr",
-    gridGap: "1%",
-    textAlign: "center",
-    padding: "15px 15px"
+  container: {
+    marginTop: "30px"
   }
 };

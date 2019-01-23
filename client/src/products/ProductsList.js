@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Sidebar from "../Sidebar";
+import Media from "react-media";
 import CarruselCard from "./CarruselCard";
 import InputQuantity from "./InputQuantity";
 import CartStorage from "../basket/CartStorage";
@@ -51,39 +51,88 @@ export default class ProductsList extends React.Component {
     let { handleClickCart, numCart } = this.props;
 
     return (
-      <div style={styles.gridCardProduct}>
-        <div style={styles.ul}>
-          <Sidebar />
-        </div>
+      <Media query="(min-width: 799px)">
+        {matches =>
+          matches ? (
+            <div style={styles.gridCardProduct}>
+              <div style={styles.contenCenter}>
+                <CarruselCard
+                  style={styles.carrusel}
+                  images={this.state.images}
+                />
+              </div>
+              <div className="basket-cobtainer">
+                <h1>{product.name}</h1>
+                <p>{product.description}</p>
+                <p>{product.price}€</p>
+                <InputQuantity
+                  style={{ display: "block" }}
+                  handleChange={this.handleChange}
+                  quantity={this.state.quantity}
+                />
 
-        <div style={styles.contenCenter}>
-          <CarruselCard images={this.state.images} />
-        </div>
-        <div className="basket-cobtainer">
-          <h1>{product.name}</h1>
-          <p>{product.description}</p>
-          <p>{product.price}€</p>
-          <InputQuantity
-            handleChange={this.handleChange}
-            quantity={this.state.quantity}
-          />
+                <button
+                  onClick={e => {
+                    handleClickCart(e);
+                    CartStorage(
+                      this.state.product,
+                      this.state.quantity,
+                      numCart
+                    );
+                  }}
+                  style={styles.button}
+                  type="button"
+                  className="btn btn-outline-dark"
+                >
+                  Add to basket
+                </button>
+                <NavLink to="/cart">
+                  <p>go to my cart</p>
+                </NavLink>
+              </div>
+            </div>
+          ) : (
+            <div style={styles.gridCardProductone}>
+              <div style={styles.contenCenter}>
+                <CarruselCard
+                  style={styles.carrusel}
+                  images={this.state.images}
+                />
+              </div>
+              <div className="basket-cobtainer">
+                <h1>{product.name}</h1>
+                <p>{product.description}</p>
+                <p>{product.price}€</p>
+                <div style={styles.quantityContainer}>
+                  <InputQuantity
+                    handleChange={this.handleChange}
+                    quantity={this.state.quantity}
+                  />
+                </div>
 
-          <button
-            onClick={e => {
-              handleClickCart(e);
-              CartStorage(this.state.product, this.state.quantity, numCart);
-            }}
-            style={styles.button}
-            type="button"
-            className="btn btn-outline-dark"
-          >
-            Add to basket
-          </button>
-          <NavLink to="/cart">
-            <p>go to my cart</p>
-          </NavLink>
-        </div>
-      </div>
+                <button
+                  onClick={e => {
+                    handleClickCart(e);
+                    CartStorage(
+                      this.state.product,
+                      this.state.quantity,
+                      numCart
+                    );
+                  }}
+                  style={styles.button}
+                  type="button"
+                  className="btn btn-outline-dark"
+                >
+                  Add to basket
+                </button>
+                <NavLink to="/cart">
+                  <p>go to my cart</p>
+                </NavLink>
+              </div>
+            </div>
+          )
+        }
+      </Media>
     );
   }
 }
@@ -91,20 +140,32 @@ export default class ProductsList extends React.Component {
 const styles = {
   gridCardProduct: {
     display: "grid",
-    gridTemplateColumns: "1fr 2fr 1fr ",
-    gridGap: "1%",
+    gridTemplateColumns: " 2fr 2fr ",
+    gridGap: "5%",
     textAlign: "center",
-    padding: "15px 15px",
+    padding: "50px 50px",
     height: "100vh"
   },
-  ul: {
-    textAlign: "left",
-    marginTop: "74px"
+  gridCardProductone: {
+    display: "grid",
+    gridTemplateColumns: " 2fr",
+    gridGap: "5%",
+    textAlign: "center",
+    padding: "50px 50px"
   },
+
   contenCenter: {
-    textAlign: "center"
+    //textAlign: "center",
+    //height: "70%"
+    marginBottom: "40px"
+  },
+  carrusel: {
+    paddingTop: "40px"
   },
   button: {
     marginBottom: "20px"
+  },
+  quantityContainer: {
+    textAlign: "center"
   }
 };

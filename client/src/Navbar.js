@@ -10,14 +10,14 @@ import {
   NavItem
 } from "reactstrap";
 
-import { NumCart } from "./NumCart";
 export default class GenericNavbar extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: true,
+      num: 0
     };
   }
 
@@ -27,17 +27,19 @@ export default class GenericNavbar extends React.Component {
     });
   }
   componentDidMount() {
-    // console.log("i am num cart", NumCart);
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    if (cart) {
-      //console.log("navbar========", cart[cart.length - 1].count);
-      //this.setState({ num: cart.length });
-    }
+    // // console.log("i am num cart", NumCart);
+    // //let cart = JSON.parse(localStorage.getItem("cart"));
+    // let cart = JSON.parse(localStorage.getItem("cart"));
+    // //let num = !cart ? 0 : cart[cart.length - 1].count;
+    // if (cart) {
+    //   this.setState({ num: cart[cart.length - 1].count });
+    // }
   }
+
   render() {
     let { numCart } = this.props;
     let cart = JSON.parse(localStorage.getItem("cart"));
-    let num = !cart ? numCart : cart[cart.length - 1].count;
+    let num = !cart ? 0 : cart.length;
     return (
       <div>
         <Media query="(min-width: 599px)">

@@ -5,15 +5,23 @@ import OrderCart from "./OrderCart";
 export default class Cart extends React.Component {
   state = {
     products: [],
-    totalToPay: 0
+    totalToPay: 0,
+    quantity: 0
+  };
+  handleQuantity = amount => {
+    let quantity = this.state.quantity;
+    let total = (quantity += amount);
+    this.setState({ quantity: total });
   };
 
   handleTotalToPay = amount => {
-    let total = (this.state.totalToPay += amount);
+    let totalTopay = this.state.totalToPay;
+    let total = (totalTopay += amount);
     this.setState({ totalToPay: total });
   };
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
+    console.log("============", cart);
 
     this.setState({ products: cart });
   }
@@ -25,6 +33,7 @@ export default class Cart extends React.Component {
           <div>
             <Carts
               handleTotalToPay={this.handleTotalToPay}
+              handleQuantity={this.handleQuantity}
               products={this.state.products}
             />
           </div>
@@ -32,6 +41,7 @@ export default class Cart extends React.Component {
           <div>
             <OrderCart
               totalToPay={this.state.totalToPay}
+              quantity={this.state.quantity}
               products={this.state.products}
             />
           </div>

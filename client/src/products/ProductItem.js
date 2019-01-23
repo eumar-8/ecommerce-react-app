@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 export default class ProductItem extends React.Component {
   state = {
@@ -20,38 +20,52 @@ export default class ProductItem extends React.Component {
       }
     });
   };
+
   componentDidMount() {
     this.findImages(this.props.product._id);
   }
   componentWillReceiveProps(nextProp) {
     if (this.props.product._id !== nextProp.product._id) {
-      debugger;
+      //debugger;
       this.findImages(nextProp.product._id);
     }
   }
   render() {
-    let { product } = this.props;
+    let { product, removeCard } = this.props;
 
     return (
-      <NavLink to={`products/${product._id}`}>
-        <div>
-          <i className="fa fa-trash-alt" />
-          <div className="card">
-            <img
-              style={styles.image}
-              className="card-img-top"
-              src={this.state.image}
-              alt=""
-            />
-            <div className="card-body text-center">
-              <p style={styles.textName} className="text-center card-text">
-                {product.name}
-              </p>
-              <p className="card-text">{product.price}€</p>
+      <div>
+        <Button
+          onClick={() => removeCard(product._id)}
+          className="card_icon_delete"
+          close
+        />
+        <NavLink
+          activeStyle={{
+            fontWeight: "bold",
+            color: "red"
+          }}
+          className="cardLink"
+          to={`products/${product._id}`}
+        >
+          <div>
+            <div className="card">
+              <img
+                style={styles.image}
+                className="card-img-top"
+                src={this.state.image}
+                alt=""
+              />
+              <div className="card-body text-center">
+                <p style={styles.textName} className="text-center card-text">
+                  {product.name}
+                </p>
+                <p className="card-text-price">{product.price}€</p>
+              </div>
             </div>
           </div>
-        </div>
-      </NavLink>
+        </NavLink>
+      </div>
     );
   }
 }
@@ -64,9 +78,6 @@ let styles = {
     paddingTop: "20px"
   },
   textName: {
-    //whiteSpace: "nowrap",
-    //width: "250px",
-    //overflow: "hidden",
     fontWeight: "500",
     color: "black"
   }

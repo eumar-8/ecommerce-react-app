@@ -1,16 +1,16 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 //import { NavLink } from "react-router-dom";
 import ProductItem from "./ProductItem";
 export default class ProductsMain extends React.Component {
   render() {
-    let { products } = this.props;
+    let { products, removeCard } = this.props;
     return (
       <Row>
         {products.map((el, i) => {
           return (
-            <Col xs="4">
-              <ProductItem product={el} key={i} />
+            <Col sm="10" md="5" lg="4" key={i}>
+              <ProductItem removeCard={removeCard} product={el} />
             </Col>
           );
         })}
@@ -18,14 +18,3 @@ export default class ProductsMain extends React.Component {
     );
   }
 }
-
-let styles = {
-  gridCards: {
-    display: "grid",
-    gridTemplateColumns: " 1fr 1fr 1fr",
-    gridGap: "1%",
-    textAlign: "center",
-    height: " 100hv",
-    padding: "15px 15px"
-  }
-};

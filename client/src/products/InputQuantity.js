@@ -71,7 +71,7 @@ function CustomizedInputs(props) {
   const { classes, handleChange, quantity } = props;
 
   return (
-    <div className={classes.container}>
+    <div>
       <FormControl className={classes.margin}>
         <InputLabel
           htmlFor="custom-css-standard-input"

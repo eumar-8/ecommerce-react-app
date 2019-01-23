@@ -2,16 +2,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default class CartItem extends React.Component {
+  handleQuantity = arr => {
+    console.log(arr);
+  };
   render() {
     let { totalToPay } = this.props;
+    let qty = JSON.parse(localStorage.getItem("qty"));
+
     return (
       <div style={styles.wrapperTotal}>
         <h1>Order sumary</h1>
-        <h2>
-          {this.props.products === null
-            ? " 0 Items "
-            : this.props.products.length + "items"}
-        </h2>
+        <h2>{this.props.products === null ? " 0 Items " : qty + "items"}</h2>
         <div style={styles.containerTotal}>
           <h3>total</h3>
           <p>{totalToPay}€</p>
