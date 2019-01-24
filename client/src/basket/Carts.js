@@ -3,16 +3,13 @@ import CartItem from "./CartItem";
 
 export default class Carts extends React.Component {
   render() {
-    let count = 0;
     return (
       this.props.products &&
       this.props.products.map((el, i) => {
         return (
           <CartItem
             handleTotalToPay={this.props.handleTotalToPay}
-            // handleQuantity={() => {
-            //   this.props.handleQuantity(parseInt(el.qty));
-            // }}
+            handleQuantity={this.props.handleQuantity}
             product={el}
             key={i}
           />

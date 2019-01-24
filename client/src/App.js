@@ -24,7 +24,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Router>
           <div>
             <GenericNavbar numCart={this.state.num} />

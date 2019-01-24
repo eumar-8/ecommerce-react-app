@@ -1,52 +1,81 @@
 import React from "react";
 import Carts from "./Carts";
+import Media from "react-media";
 import OrderCart from "./OrderCart";
 
 export default class Cart extends React.Component {
   state = {
     products: [],
     totalToPay: 0,
-    quantity: 0
-  };
-  handleQuantity = amount => {
-    let quantity = this.state.quantity;
-    let total = (quantity += amount);
-    this.setState({ quantity: total });
+    arr: []
   };
 
   handleTotalToPay = amount => {
-    let totalTopay = this.state.totalToPay;
-    let total = (totalTopay += amount);
-    this.setState({ totalToPay: total });
+    this.state.arr.push(amount);
+    this.sumTotal(this.state.arr);
+    console.log(this.state.arr);
   };
+
+  sumTotal = arr => {
+    let sum = 0;
+    arr.map(el => {
+      sum += el;
+    });
+    this.setState({ totalToPay: sum });
+  };
+
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    console.log("============", cart);
-
     this.setState({ products: cart });
   }
 
   render() {
     return (
-      <div className="container" style={styles.wrapper}>
-        <div style={styles.gridCart}>
-          <div>
-            <Carts
-              handleTotalToPay={this.handleTotalToPay}
-              handleQuantity={this.handleQuantity}
-              products={this.state.products}
-            />
-          </div>
+      <Media query="(min-width: 773px)">
+        {matches =>
+          matches ? (
+            <div style={styles.wrapper}>
+              <div className="container">
+                <div style={styles.gridCart}>
+                  <div>
+                    <Carts
+                      handleTotalToPay={this.handleTotalToPay}
+                      products={this.state.products}
+                    />
+                  </div>
 
-          <div>
-            <OrderCart
-              totalToPay={this.state.totalToPay}
-              quantity={this.state.quantity}
-              products={this.state.products}
-            />
-          </div>
-        </div>
-      </div>
+                  <div>
+                    <OrderCart
+                      totalToPay={this.state.totalToPay}
+                      products={this.state.products}
+                    />
+                  </div>
+                </div>
+              </div>{" "}
+            </div>
+          ) : (
+            <div style={styles.wrapper}>
+              <div className="container">
+                <div style={styles.gridCartOne}>
+                  <div>
+                    <OrderCart
+                      totalToPay={this.state.totalToPay}
+                      quantity={this.state.quantity}
+                      products={this.state.products}
+                    />
+                  </div>
+                  <Carts
+                    handleTotalToPay={this.handleTotalToPay}
+                    handleQuantity={this.handleQuantity}
+                    products={this.state.products}
+                  />
+                  <div />
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </Media>
     );
   }
 }
@@ -54,13 +83,23 @@ export default class Cart extends React.Component {
 let styles = {
   gridCart: {
     display: "grid",
-    gridTemplateColumns: "4fr 2fr",
+    gridTemplateColumns: "4fr 4fr",
+    gridGap: "1%",
+    textAlign: "center",
+    padding: "15px 15px",
+
+    overflow: "auto"
+  },
+  wrapper: {
+    //marginTop: "50px",
+    height: "100vh"
+    //minHeight: "100%"
+  },
+  gridCartOne: {
+    display: "grid",
+    gridTemplateColumns: "2fr",
     gridGap: "1%",
     textAlign: "center",
     padding: "15px 15px"
-  },
-  wrapper: {
-    marginTop: "50px",
-    height: "100vmin"
   }
 };

@@ -61,26 +61,28 @@ export default class ProductsPage extends React.Component {
         <Media query="(min-width: 900px)">
           {matches =>
             matches ? (
-              <Container fluid={true} style={styles.container}>
-                <Row>
-                  <Col xs="2">
-                    <div className="sidebar ">
-                      <Sidebar
-                        getProducts={this.getProducts}
-                        getProductsBycategoty={this.getProductsBycategoty}
+              <div style={styles.wrapper}>
+                <Container fluid={true} style={styles.container}>
+                  <Row>
+                    <Col xs="2">
+                      <div className="sidebar ">
+                        <Sidebar
+                          getProducts={this.getProducts}
+                          getProductsBycategoty={this.getProductsBycategoty}
+                        />
+                      </div>
+                    </Col>
+                    <Col xs="10">
+                      {/* <Container> */}
+                      <ProductsMain
+                        removeCard={this.removeCard}
+                        products={this.state.products}
                       />
-                    </div>
-                  </Col>
-                  <Col xs="10">
-                    {/* <Container> */}
-                    <ProductsMain
-                      removeCard={this.removeCard}
-                      products={this.state.products}
-                    />
-                    {/* </Container> */}
-                  </Col>
-                </Row>
-              </Container>
+                      {/* </Container> */}
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
             ) : (
               <Container>
                 <TopBar
@@ -108,5 +110,9 @@ export default class ProductsPage extends React.Component {
 const styles = {
   container: {
     marginTop: "30px"
+  },
+  wrapper: {
+    //marginTop: "50px",
+    minHeight: "100%"
   }
 };

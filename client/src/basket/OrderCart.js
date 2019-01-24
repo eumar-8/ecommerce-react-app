@@ -1,21 +1,44 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default class CartItem extends React.Component {
-  handleQuantity = arr => {
-    console.log(arr);
+export default class OrderCart extends React.Component {
+  state = {
+    products: [],
+    qty: 0,
+    price: 0
   };
-  render() {
-    let { totalToPay } = this.props;
-    let qty = JSON.parse(localStorage.getItem("qty"));
+  handleQuantity = arr => {
+    let sum = 0;
+    if (arr) {
+      arr.map(el => {
+        sum = sum + parseInt(el.qty);
+      });
+      this.setState({ qty: sum });
+    }
+  };
 
+  componentDidMount() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    this.setState({ products: cart });
+    this.handleQuantity(cart);
+    console.log(this.props.totalTopay);
+  }
+  render() {
+    console.log("total a pagar", this.props.totalToPay);
+    let { totalToPay } = this.props;
     return (
       <div style={styles.wrapperTotal}>
         <h1>Order sumary</h1>
-        <h2>{this.props.products === null ? " 0 Items " : qty + "items"}</h2>
+        <h2>
+          {this.state.products === null
+            ? " 0 Items "
+            : this.state.qty + " items"}
+        </h2>
         <div style={styles.containerTotal}>
           <h3>total</h3>
-          <p>{totalToPay}€</p>
+          <p>
+            {this.state.products === null ? " 0 Items " : totalToPay + " €"}
+          </p>
         </div>
         <NavLink to="/checkout">
           <button type="button" className="btn btn-outline-dark">

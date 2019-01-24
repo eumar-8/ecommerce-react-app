@@ -26,18 +26,9 @@ export default class GenericNavbar extends React.Component {
       collapsed: !this.state.collapsed
     });
   }
-  componentDidMount() {
-    // // console.log("i am num cart", NumCart);
-    // //let cart = JSON.parse(localStorage.getItem("cart"));
-    // let cart = JSON.parse(localStorage.getItem("cart"));
-    // //let num = !cart ? 0 : cart[cart.length - 1].count;
-    // if (cart) {
-    //   this.setState({ num: cart[cart.length - 1].count });
-    // }
-  }
+  componentDidMount() {}
 
   render() {
-    let { numCart } = this.props;
     let cart = JSON.parse(localStorage.getItem("cart"));
     let num = !cart ? 0 : cart.length;
     return (
@@ -77,17 +68,17 @@ export default class GenericNavbar extends React.Component {
                     />
                     <Collapse isOpen={!this.state.collapsed} navbar>
                       <Nav navbar>
-                        <NavItem>
+                        <NavItem style={styles.item}>
                           <NavLink style={styles.a} to="/products">
                             Products
                           </NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem style={styles.item}>
                           <NavLink style={styles.a} to="/shops">
                             Shops
                           </NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem style={styles.item}>
                           <NavLink style={styles.a} to="/cart">
                             <i className="basketIcon fa fa-shopping-basket" />
                             <span className="numCart">({num})</span>
@@ -132,5 +123,9 @@ const styles = {
   a: {
     color: "#EFE2E2",
     paddingTop: 20
+  },
+  item: {
+    paddingTop: 10,
+    paddingBottom: 10
   }
 };

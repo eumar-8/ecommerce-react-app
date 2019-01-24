@@ -6,8 +6,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
-
+/* .app {
+  overflow: auto;
+  padding-bottom: 150px;
+} */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -168,6 +172,12 @@ form.search-bar::after {
   padding: 0px 50px;
   color: rgba(0, 0, 0, 0.3);
   z-index: 10000;
+
+  /* position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  /* height: 150px;
+  clear: both;
+  padding-top: 20px; */
 }
 .footer-links {
   display: flex;
@@ -293,8 +303,6 @@ form.search-bar::after {
   transition: 0.5s ease all;
 }
 
-/* ==================== TOPBAR ============= */
-
 .CustomizedInputs-container-1 {
   display: block !important;
   flex-wrap: wrap;
@@ -302,3 +310,5 @@ form.search-bar::after {
   align-content: center;
   margin: 30px;
 }
+
+/* ==================== TOPBAR ============= */

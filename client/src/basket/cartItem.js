@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Carts extends React.Component {
+export default class CartItem extends React.Component {
   state = {
     image: "",
     price: 0
@@ -27,9 +27,8 @@ export default class Carts extends React.Component {
   };
   handlePrice = (price, qty) => {
     let total = parseInt(price) * parseInt(qty);
-    this.setState({ price: total }, () => {
+    this.setState({ price: total, qty: qty }, () => {
       this.props.handleTotalToPay(total);
-      // this.props.handleQuantity(parseInt(qty));
     });
   };
 
