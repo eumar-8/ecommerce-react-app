@@ -42,8 +42,12 @@ export default class ProductsList extends React.Component {
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value }, () => {
-      console.log(this.state.quantity);
+      console.log("BLALALALLALALALA", this.state.quantity);
     });
+  };
+
+  handleSubmit = e => {
+    this.setState({ quantity: "" });
   };
 
   render() {
@@ -79,6 +83,7 @@ export default class ProductsList extends React.Component {
                       this.state.quantity,
                       numCart
                     );
+                    this.handleSubmit();
                   }}
                   style={styles.button}
                   type="button"
