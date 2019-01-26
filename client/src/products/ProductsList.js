@@ -42,7 +42,7 @@ export default class ProductsList extends React.Component {
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value }, () => {
-      console.log("BLALALALLALALALA", this.state.quantity);
+      console.log(this.state.quantity);
     });
   };
 
@@ -108,12 +108,11 @@ export default class ProductsList extends React.Component {
                 <h1>{product.name}</h1>
                 <p>{product.description}</p>
                 <p>{product.price}€</p>
-                <div style={styles.quantityContainer}>
-                  <InputQuantity
-                    handleChange={this.handleChange}
-                    quantity={this.state.quantity}
-                  />
-                </div>
+                <InputQuantity
+                  style={{ display: "block" }}
+                  handleChange={this.handleChange}
+                  quantity={this.state.quantity}
+                />
 
                 <button
                   onClick={e => {
@@ -123,6 +122,7 @@ export default class ProductsList extends React.Component {
                       this.state.quantity,
                       numCart
                     );
+                    this.handleSubmit();
                   }}
                   style={styles.button}
                   type="button"

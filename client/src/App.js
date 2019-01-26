@@ -30,9 +30,11 @@ class App extends Component {
             <GenericNavbar numCart={this.state.num} />
             <Route exact path="/" component={Home} />
             <Route exact path="/products" component={ProductsPage} />
+            <Route name="products" exact path="/:name" handler={ProductsPage} />
             <Route path="/shops" component={Shops} />
             <Route path="/cart" component={Cart} />
             <Route
+              exact
               path="/products/:product"
               render={props => (
                 <ProductsList

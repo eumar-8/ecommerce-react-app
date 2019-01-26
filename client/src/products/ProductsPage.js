@@ -12,7 +12,13 @@ export default class ProductsPage extends React.Component {
   };
 
   componentDidMount() {
-    this.getProducts();
+    let param = this.props.location.param1;
+    if (param === undefined) {
+      this.getProducts();
+    } else {
+      this.getProductsByName(param);
+      console.log("=======", param);
+    }
   }
 
   removeCard = id => {
@@ -31,6 +37,22 @@ export default class ProductsPage extends React.Component {
         this.getProducts();
       })
       .catch(e => {});
+  };
+
+  getProductsByName = name => {
+    const url = `http://localhost:3001/products/name/${name}`;
+    fetch(url)
+      .then(res => {
+        res.json().then(resJson => {
+          console.log("$$$$$$$$", resJson);
+          this.setState({ products: resJson }, () => {
+            console.log("SSSSSSSSSS", this.state.products);
+          });
+        });
+      })
+      .catch(e => {});
+
+    this.setState({ products: [] });
   };
 
   getProducts = () => {
@@ -73,12 +95,10 @@ export default class ProductsPage extends React.Component {
                       </div>
                     </Col>
                     <Col xs="10">
-                      {/* <Container> */}
                       <ProductsMain
                         removeCard={this.removeCard}
                         products={this.state.products}
                       />
-                      {/* </Container> */}
                     </Col>
                   </Row>
                 </Container>
@@ -91,12 +111,10 @@ export default class ProductsPage extends React.Component {
                 />
                 <Row>
                   <Col xs="12">
-                    {/* <Container> */}
                     <ProductsMain
                       removeCard={this.removeCard}
                       products={this.state.products}
                     />
-                    {/* </Container> */}
                   </Col>
                 </Row>
               </Container>

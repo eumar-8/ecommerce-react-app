@@ -10,19 +10,19 @@ export default class Cart extends React.Component {
     arr: []
   };
 
-  handleTotalToPay = amount => {
-    this.state.arr.push(amount);
-    this.sumTotal(this.state.arr);
-    console.log(this.state.arr);
-  };
+  // handleTotalToPay = amount => {
+  //   this.state.arr.push(amount);
+  //   this.sumTotal(this.state.arr);
+  //   console.log(this.state.arr);
+  // };
 
-  sumTotal = arr => {
-    let sum = 0;
-    arr.map(el => {
-      sum += el;
-    });
-    this.setState({ totalToPay: sum });
-  };
+  // sumTotal = arr => {
+  //   let sum = 0;
+  //   arr.map(el => {
+  //     sum += el;
+  //   });
+  //   this.setState({ totalToPay: sum });
+  // };
 
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
@@ -39,7 +39,7 @@ export default class Cart extends React.Component {
                 <div style={styles.gridCart}>
                   <div>
                     <Carts
-                      handleTotalToPay={this.handleTotalToPay}
+                      // handleTotalToPay={this.handleTotalToPay}
                       products={this.state.products}
                     />
                   </div>
@@ -51,7 +51,7 @@ export default class Cart extends React.Component {
                     />
                   </div>
                 </div>
-              </div>{" "}
+              </div>
             </div>
           ) : (
             <div style={styles.wrapper}>
@@ -60,13 +60,11 @@ export default class Cart extends React.Component {
                   <div>
                     <OrderCart
                       totalToPay={this.state.totalToPay}
-                      quantity={this.state.quantity}
                       products={this.state.products}
                     />
                   </div>
                   <Carts
                     handleTotalToPay={this.handleTotalToPay}
-                    handleQuantity={this.handleQuantity}
                     products={this.state.products}
                   />
                   <div />

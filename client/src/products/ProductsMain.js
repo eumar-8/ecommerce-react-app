@@ -7,13 +7,17 @@ export default class ProductsMain extends React.Component {
     let { products, removeCard } = this.props;
     return (
       <Row>
-        {products.map((el, i) => {
-          return (
-            <Col sm="10" md="5" lg="4" key={i}>
-              <ProductItem removeCard={removeCard} product={el} />
-            </Col>
-          );
-        })}
+        {products.length === 0 ? (
+          <h1>NO HAY NA</h1>
+        ) : (
+          products.map((el, i) => {
+            return (
+              <Col sm="10" md="5" lg="4" key={i}>
+                <ProductItem removeCard={removeCard} product={el} />
+              </Col>
+            );
+          })
+        )}
       </Row>
     );
   }

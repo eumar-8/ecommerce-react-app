@@ -28,7 +28,7 @@ export default class CartItem extends React.Component {
   handlePrice = (price, qty) => {
     let total = parseInt(price) * parseInt(qty);
     this.setState({ price: total, qty: qty }, () => {
-      this.props.handleTotalToPay(total);
+      // this.props.handleTotalToPay(total);
     });
   };
 

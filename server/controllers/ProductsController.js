@@ -38,10 +38,12 @@ class ProductsController {
     }
   }
   async getproductByName(req, res) {
-    console.log(req.params);
+    console.log("========= product by name =========", req.params);
     let { name } = req.params;
     try {
-      const product = await Products.find({ name: { $regex: name } });
+      const product = await Products.find({
+        name: { $regex: name, $options: "i" }
+      });
       res.send(product);
     } catch (e) {
       console.log(e);

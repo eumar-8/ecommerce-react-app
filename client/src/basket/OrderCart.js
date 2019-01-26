@@ -1,11 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Modal from "./Modal";
 
 export default class OrderCart extends React.Component {
   state = {
     products: [],
     qty: 0,
-    price: 0
+    price: 0,
+    total: 0
   };
   handleQuantity = arr => {
     let sum = 0;
@@ -17,10 +18,25 @@ export default class OrderCart extends React.Component {
     }
   };
 
+  renderTotaltoPay = arr => {
+    console.log("$$$$$$$$$$", arr);
+    let sum = 0;
+    arr.map(el => {
+      let multyply = parseInt(el.price) * parseInt(el.qty);
+      sum = sum + multyply;
+    });
+    console.log("+++++++++++", sum);
+    this.setState({ total: sum });
+    // return sum;
+  };
+
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    this.setState({ products: cart });
+    this.setState({ products: cart }, () => {
+      this.renderTotaltoPay(this.props.products);
+    });
     this.handleQuantity(cart);
+
     console.log(this.props.totalTopay);
   }
   render() {
@@ -37,14 +53,15 @@ export default class OrderCart extends React.Component {
         <div style={styles.containerTotal}>
           <h3>total</h3>
           <p>
-            {this.state.products === null ? " 0 Items " : totalToPay + " €"}
+            {this.state.products === null
+              ? " 0 Items "
+              : this.state.total + " €"}
           </p>
         </div>
-        <NavLink to="/checkout">
-          <button type="button" className="btn btn-outline-dark">
-            Process Order
-          </button>
-        </NavLink>
+        {/* <NavLink to="/checkout"> */}
+
+        <Modal />
+        {/* </NavLink> */}
       </div>
     );
   }
