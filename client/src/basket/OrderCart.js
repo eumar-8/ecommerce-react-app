@@ -21,27 +21,27 @@ export default class OrderCart extends React.Component {
   renderTotaltoPay = arr => {
     console.log("$$$$$$$$$$", arr);
     let sum = 0;
+
     arr.map(el => {
       let multyply = parseInt(el.price) * parseInt(el.qty);
       sum = sum + multyply;
     });
     console.log("+++++++++++", sum);
     this.setState({ total: sum });
-    // return sum;
   };
 
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    this.setState({ products: cart }, () => {
-      this.renderTotaltoPay(this.props.products);
-    });
-    this.handleQuantity(cart);
+    if (cart) {
+      this.setState({ products: cart }, () => {
+        this.renderTotaltoPay(this.props.products);
+      });
+      this.handleQuantity(cart);
 
-    console.log(this.props.totalTopay);
+      console.log(this.props.totalTopay);
+    }
   }
   render() {
-    console.log("total a pagar", this.props.totalToPay);
-    let { totalToPay } = this.props;
     return (
       <div style={styles.wrapperTotal}>
         <h1>Order sumary</h1>

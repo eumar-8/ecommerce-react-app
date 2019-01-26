@@ -1,5 +1,5 @@
 import React from "react";
-//import UploadImages from "./UploadImages";
+import { Container, Row, Col } from "reactstrap";
 
 export default class UpdateProduct extends React.Component {
   state = {
@@ -10,20 +10,6 @@ export default class UpdateProduct extends React.Component {
     description: "",
     price: ""
   };
-  // componentDidMount() {
-  //   this.getMoviesByGenre(this.props.match.params.genreId);
-  // }
-
-  // getMoviesByGenre = genreId => {
-  //   const url = "http://localhost:3001/movies/genreId/" + genreId;
-  //   fetch(url)
-  //     .then(res => {
-  //       res.json().then(resJson => {
-  //         this.setState({ movies: resJson });
-  //       });
-  //     })
-  //     .catch(e => {});
-  // };
 
   addProducts = (category, name, description, price) => {
     const url = "http://localhost:3001/products/add",
@@ -67,52 +53,64 @@ export default class UpdateProduct extends React.Component {
   };
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Example select</label>
-            <select
-              name="category"
-              onChange={this.handleChange}
-              className="form-control"
-              id="exampleFormControlSelect1"
-            >
-              {["Lamps", "Vases", "Mirrors", "Candles"].map((ele, i) => (
-                <option key={i} value={ele}>
-                  {ele}
-                </option>
-              ))}
-            </select>
-          </div>
-          <input
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-            className="form-control form-control-lg"
-            type="text"
-            placeholder="add name"
-          />
-          <input
-            name="description"
-            value={this.state.description}
-            onChange={this.handleChange}
-            className="form-control form-control-lg"
-            type="text"
-            placeholder="add description"
-          />
-          <input
-            name="price"
-            value={this.state.price}
-            onChange={this.handleChange}
-            className="form-control form-control-lg"
-            type="text"
-            placeholder="add price"
-          />
-
-          <button type="submit" className="btn btn-primary">
-            Continue
-          </button>
-        </form>
+      <div style={{ height: "70vh" }} className="form_update">
+        <Container style={{ marginTop: "40px" }}>
+          <Row>
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+              <form onSubmit={this.handleSubmit}>
+                <div
+                  style={{ marginLeft: "30px", width: "100% " }}
+                  className="form-group"
+                >
+                  <label htmlFor="exampleFormControlSelect1">
+                    select Category
+                  </label>
+                  <select
+                    name="category"
+                    onChange={this.handleChange}
+                    className="form-control"
+                    id="exampleFormControlSelect1"
+                  >
+                    {["Lamps", "Vases", "Mirrors", "Candles"].map((ele, i) => (
+                      <option key={i} value={ele}>
+                        {ele}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <input
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  className="form-control form-control-lg"
+                  type="text"
+                  placeholder="add name"
+                />
+                <input
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.handleChange}
+                  className="form-control form-control-lg"
+                  type="text"
+                  placeholder="add description"
+                />
+                <input
+                  name="price"
+                  value={this.state.price}
+                  onChange={this.handleChange}
+                  className="form-control form-control-lg"
+                  type="text"
+                  placeholder="add price"
+                />
+                <div style={{ textAlign: "center", marginBottom: "30px" }}>
+                  <button type="submit" className="btn btn-primary">
+                    Continue
+                  </button>
+                </div>
+              </form>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
